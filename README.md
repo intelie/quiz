@@ -1,17 +1,9 @@
 # Quiz Intelie
 
-É pedido que você desenvolva, em sua linguagem de preferência, uma proposta de solução para o problema descrito abaixo.
+Esse repositório contém os desafios para as vagas em cada área da Intelie. Os desafios estão organizados em diretórios conforme descrito abaixo.
 
-## Descrição do problema
+## Diretórios
 
-Ao realizar uma busca no google e receber uma série de resultados, alguns dos títulos das páginas encontradas podem ou não conter o termo buscado.
+* Desafios de **desenvolvimento** no diretório [dev](https://github.com/intelie/quiz/tree/master/dev)
+* Desafios de **operação e serviços** no diretório [sysadmin](https://github.com/intelie/quiz/tree/master/sysadmin)
 
-É desejado saber quantas vezes o termo buscado é contido nos títulos das páginas retornadas como resultado. O termo pode aparecer mais de uma vez em um mesmo título.
-
-Considere também termos que tenham sido digitados erradamente, com distância de Levenshtein de no máximo 2.
-
-## Solução
-
-Faça um pull request deste repositório com a solução do problema, implementada em sua linguagem de preferência, e instruções para compilação e geração de um arquivo executável em UNIX.
-
-O executável deve receber como parâmetro o termo a ser buscado, imprimir todos os títulos encontrados e a resposta do problema.
