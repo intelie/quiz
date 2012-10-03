@@ -38,7 +38,7 @@ Escolha um dos desafios abaixo e envie a solução para o e-mail `trabalhe@intel
 
 * o servidor C é o único que tem instalado um cliente VPN para acessar uma rede externa de um cliente da Intelie
 * os sistemas da Intelie rodam nos servidores A e B, que precisam receber tráfego HTTP vindo da rede externa do cliente (encapsulado na VPN)
-
+* responda: é possível adicionar uma rota nos servidores A e B apontando o servidor C como gateway para a rede externa do cliente?
 * proponha duas possíveis soluções para que os servidores A e B recebam o tráfego HTTP (e, claro, a resposta chegue de volta ao cliente)
 * discuta as vantagens e desvantagens de cada solução levando em consideração aspectos práticos como estabilidade da solução e facilidade de configuração/manutenção.
 
