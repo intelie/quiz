@@ -4,11 +4,10 @@ Escolha um dos desafios abaixo e envie a solução para o e-mail `trabalhe@intel
 
 ## Desafio 1:
 * crie na sua máquina uma VM do VirtualBox com sistema operacional CentOS 5.6
-* use o [módulo do puppet que gerencia o MySQL](https://github.com/intelie/puppetlabs-mysql) para:
+* use o [módulo do puppet que gerencia o MySQL](https://github.com/puppetlabs/puppetlabs-mysql) para:
   * instalar e rodar o MySQL server na sua VM
   * configurar um usuário de backup (com senha)
   * ativar uma rotina de backup diário às 01:00AM de todas as bases do MySQL
-* se achar necessária a alteração de algum arquivo do módulo do puppet do MySQL, faça um pull request para o [repositório](https://github.com/intelie/puppetlabs-mysql)
 * envie por e-mail as evidências de que tudo foi realizado com sucesso
 
 ## Desafio 2:
