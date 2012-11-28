@@ -1,0 +1,14 @@
+
+- Para compilar é necessário ter o Qt5 SDK e qualquer compilador com suporte à C++11x, com isso, basta rodar "qmake && make"
+- Resolvi o desafio em C++ pois acredito que muito usaram linguagens de script, como Python, e com toda certeza teria usado Python neste desafio. Sendo assim, decidi dar uma incrementada na solução, como por exemplo, fazer com que todo o processo seja assíncrono, e o processamento dos títulos rode
+em threads separadas (QtConcurrent)
+- O programa faz diversas consultas na API do google até que ela retorne uma resposta nula ("DDoS" uhul! :D) e processa em paralelo os resultados obtidos
+
+Exemplo de saída:
+./Quiz fulano
+count 2 title "Scho schee: Eu e Fulano, Fulano e eu.. Tem diferença?"
+count 1 title "[CS]Bill - Historia Do Fulano [Vídeo] - YouTube"
+count 1 title "DJ Fulano (FulanosWorld) on Twitter"
+count 1 title "Fulano - Domínio Público - Detalhe da Obra"
+...
+Total occurences: 139
