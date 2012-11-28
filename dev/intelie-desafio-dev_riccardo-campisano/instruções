@@ -1,0 +1,77 @@
+from https://github.com/intelie/quiz/tree/master/dev
+<<
+Desafios de desenvolvimento
+
+É pedido que você desenvolva, em sua linguagem de preferência, uma proposta de solução para o problema descrito abaixo.
+Descrição do problema
+
+Ao realizar uma busca no google e receber uma série de resultados, alguns dos títulos das páginas encontradas podem ou não conter o termo buscado.
+
+É desejado saber quantas vezes o termo buscado é contido nos títulos das páginas retornadas como resultado. O termo pode aparecer mais de uma vez em um mesmo título.
+
+Considere também termos que tenham sido digitados erradamente, com distância de Levenshtein de no máximo 2.
+Solução
+
+Faça um pull request deste repositório com a solução do problema, implementada em sua linguagem de preferência, e instruções para compilação e geração de um arquivo executável em UNIX.
+
+O executável deve receber como parâmetro o termo a ser buscado, imprimir todos os títulos encontrados e a resposta do problema.
+>>
+
+
+
+===== Instruções de compilação =====
+
+A solução foi desenvolvida na linguagem C++
+
+Para compilar o programa é preciso ter instaladas as livrarias de desenvolvimento de curl e json-c que podem ser encontradas nos endereços:
+ * http://curl.haxx.se/libcurl/
+ * http://oss.metaparadigm.com/json-c/
+
+Para o sistema debian, as dependências podem ser instaladas com o comando:
+ apt-get install libcurl3 libjson0-dev
+
+A compilação pode ser feita através do comando make ou do comando a seguir:
+ g++ -I/usr/include/json src/main.cpp src/HTTPRequest.cpp src/JSONParser.cpp src/StringUtils.cpp -ljson -lcurl
+
+
+
+===== Funcionamento =====
+
+A busca do google é feita através da API descrita no endereço:
+ https://developers.google.com/web-search/docs/#fonje
+
+Esta aconselha enviar o ip da própria máquina. Para obte-lo utilizo o serviço FreeGeoIp:
+ http://freegeoip.net/json/
+
+Os dois serviços utilizam json, por isso o código foi reutilizado.
+Por padrão, a API de busca do google apresenta somente os primeiros 4 resultados, sendo que os resultados podem ser milhares. Não alterei esse comportamento enquanto não foi indicado o número de resultados nesse Desafio. O funcionamento do programa seria o mesmo.
+A conta das ocorrências com Levenshtein >= 2 é apresentada para cada resultado no inicio da linha, bem como no resumo final. Isso porque fiquei com dúvidas sobre como deveria ser feita a contagem.
+Observação: a distância de Levenshtein é 'case-sensitive', enquanto busca do google não.
+
+
+
+===== Output =====
+
+$ ./test ParisHilton
+COUNT: 1 title: The Official Website of <b>Paris Hilton</b>
+COUNT: 2 title: <b>Paris Hilton</b> (<b>ParisHilton</b>) on Twitter
+COUNT: 1 title: <b>Paris Hilton</b> - Wikipedia, the free encyclopedia
+COUNT: 1 title: <b>Paris Hilton</b> - IMDb
+Total occurences: 5
+Titles containing at least one occurence: 4
+$ ./test audio
+COUNT: 1 title: Download &amp; Streaming : <b>Audio</b> Archive : Internet Archive
+COUNT: 1 title: <b>Audio</b> - Wikipedia, the free encyclopedia
+COUNT: 3 title: Download <b>Audio</b> Books with Audible.com Online Digital <b>Audio</b> Book <b>...</b>
+COUNT: 0 title: M-<b>AUDIO</b>
+Total occurences: 5
+Titles containing at least one occurence: 3
+$ 
+
+
+
+===== Autor =====
+
+Riccardo Campisano
+riccardo.campisano@gmail.com
+
