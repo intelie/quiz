@@ -18,12 +18,10 @@ class Crawler : public QObject
         void search(const QString& query);
 
     protected slots:
-        void searchNext(quint32 index = 0);
-
-    protected slots:
         void finished();
         void error(QNetworkReply::NetworkError error);
         void handleDone();
+        void nextDownload();
 
     signals:
         void done();
@@ -32,11 +30,13 @@ class Crawler : public QObject
         Q_OBJECT
 
         static QString GOOGLE_API;
+        static int MAX_CONCURRENT_REQUESTS;
 
         NetworkAccessManager manager;
+        QList<QUrl> urls;
         QList<QFuture<QList<QPair<int, QString> > > > futures;
         QString currentQuery;
-        int currentIndex;
+        int activeDownloads;
 };
 
 #endif

@@ -3,48 +3,45 @@
 
 
 
-
-QString Crawler::GOOGLE_API = QString("http://ajax.googleapis.com/ajax/services/search/web?v=2.0&rsz=8");
+QString Crawler::GOOGLE_API = QString("http://ajax.googleapis.com/ajax/services/search/web?v=2.0");
+int Crawler::MAX_CONCURRENT_REQUESTS = 8;
 
 Crawler::Crawler(QObject *parent)
 : QObject(parent)
 {
+    activeDownloads = 0;
     QThreadPool::globalInstance()
-        ->setMaxThreadCount(8);
+        ->setMaxThreadCount(MAX_CONCURRENT_REQUESTS);
 
-    connect(this, SIGNAL(done()), SLOT(handleDone()));
+    connect(this, SIGNAL(done()), this, SLOT(handleDone()));
 }
 
 void Crawler::search(const QString& query)
 {
     currentQuery = query;
-    searchNext();
-}
 
-void Crawler::searchNext(quint32 index)
-{
-    currentIndex = index;
-    QString url = QString("%1&q=%2&start=%3")
+    for (int i = 0; i <= MAX_CONCURRENT_REQUESTS * 100; i += MAX_CONCURRENT_REQUESTS) {
+        urls << QString("%1&rsz=%2&q=%3&start=%4")
                     .arg(GOOGLE_API)
-                    .arg(currentQuery)
-                    .arg(currentIndex);
+                    .arg(MAX_CONCURRENT_REQUESTS)
+                    .arg(query)
+                    .arg(i);
+    }
 
-    QNetworkRequest request(url);
-    QNetworkReply *reply = manager.get(request);
-
-    connect(reply, SIGNAL(finished()), SLOT(finished()));
-    connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(error(QNetworkReply::NetworkError)));
+    nextDownload();
 }
 
 void Crawler::finished()
 {
     // Warning: Verbosity ahead
     if (QNetworkReply *reply = qobject_cast<QNetworkReply *>(sender())) {
+        activeDownloads--;
         QJsonParseError parseError;
         QJsonObject object = QJsonDocument::fromJson(reply->readAll(), &parseError).object();
         reply->deleteLater();
 
         if (parseError.error != QJsonParseError::NoError) {
+            qWarning(qPrintable(parseError.errorString()));
             emit done();
             return;
         }
@@ -86,7 +83,7 @@ void Crawler::finished()
         });
 
         // Keep looking for more results
-        searchNext(currentIndex + 1);
+        nextDownload();
     }
 }
 
@@ -110,6 +107,8 @@ void Crawler::error(QNetworkReply::NetworkError error)
 
 void Crawler::handleDone()
 {
+    disconnect(this, SIGNAL(done()), this, SLOT(handleDone()));
+
     // Wait for all threads to complete
     int occurences = 0;
     foreach (auto future, futures) {
@@ -129,4 +128,23 @@ void Crawler::handleDone()
 
     // All done
     QCoreApplication::exit();
+}
+
+void Crawler::nextDownload()
+{
+    while (activeDownloads < MAX_CONCURRENT_REQUESTS) {
+        activeDownloads++;
+        if (urls.empty()) {
+            qDebug("urls is empty");
+            emit done();
+            return;
+        }
+
+        QUrl url = urls.takeFirst();
+        QNetworkRequest request(url);
+        QNetworkReply *reply = manager.get(request);
+
+        connect(reply, SIGNAL(finished()), SLOT(finished()));
+        connect(reply, SIGNAL(error(QNetworkReply::NetworkError)), SLOT(error(QNetworkReply::NetworkError)));
+    }
 }
