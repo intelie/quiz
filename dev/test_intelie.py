@@ -36,6 +36,31 @@ class IntelieTestCase(unittest.TestCase):
         self.assertEquals(levenshtein("habitat", "habitantes"), 3)
         self.assertEquals(levenshtein("php", "python"), 4)
 
+    def test_count_words(self):
+        strings = [
+                "Flor pastel cama Flores",
+                "Maria fala fror, coitada",
+                "Floresta não conta como flor"
+        ]
+
+        counter = 0
+        for string in strings:
+            counter += count_words("flor", normalize_string(string))
+
+        self.assertEquals(counter, 4)
+
+        strings = [
+                "Porto morto filho de Francisco",
+                "Potro novo é como outro!",
+                "Torto da vida, para sempre"
+        ]
+
+        counter = 0
+        for string in strings:
+            counter += count_words("porto", normalize_string(string))
+
+        self.assertEquals(counter, 4)
+
 
 if __name__ == "__main__":
     unittest.main()

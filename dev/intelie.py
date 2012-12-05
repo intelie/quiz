@@ -48,3 +48,13 @@ def levenshtein(a, b):
             current[j] = min(add, delete, change)
 
     return current[n]
+
+
+def count_words(keyword, title):
+    counter = 0
+
+    for word in title.split():
+        if levenshtein(keyword, word) <= 2:
+            counter += 1
+
+    return counter
