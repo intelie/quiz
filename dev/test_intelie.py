@@ -15,6 +15,11 @@ class IntelieTestCase(unittest.TestCase):
         google_result = json.loads(json_result)
         self.assertRaises(RuntimeError, validate, google_result)
 
+    def test_strip_accents(self):
+        string = 'Téstê pàrá rêmõvèr âcêntós'
+
+        self.assertEquals(strip_accents(string), 'Teste para remover acentos')
+
 
 if __name__ == "__main__":
     unittest.main()
