@@ -4,7 +4,7 @@ import unicodedata
 import re
 
 
-def validate(data):
+def validate_result(data):
     if not "items" in data:
         if "error" in data:
             raise RuntimeError(data["error"]["message"])
