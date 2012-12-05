@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import unicodedata
+import re
+
 
 def validate(data):
     if not "items" in data:
@@ -20,3 +22,10 @@ def strip_accents(string):
         return unicodedata.category(c)
 
     return ''.join((c for c in normalize(string) if category(c) != 'Mn'))
+
+
+def normalize_string(string):
+    string = strip_accents(string).lower()
+    string = re.sub("[^A-Za-z0-9\s]", "", string)
+
+    return string

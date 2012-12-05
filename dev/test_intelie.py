@@ -17,8 +17,15 @@ class IntelieTestCase(unittest.TestCase):
 
     def test_strip_accents(self):
         string = 'Téstê pàrá rêmõvèr âcêntós'
+        expected = 'Teste para remover acentos'
 
-        self.assertEquals(strip_accents(string), 'Teste para remover acentos')
+        self.assertEquals(strip_accents(string), expected)
+
+    def test_normalize_should_return_a_lowercased_accents_striped_string(self):
+        string = 'TéStÊ, PàRá<> !rÊmõVèR. ,âCêNtÓs!'
+        expected = 'teste para remover acentos'
+
+        self.assertEquals(normalize_string(string), expected)
 
 
 if __name__ == "__main__":
