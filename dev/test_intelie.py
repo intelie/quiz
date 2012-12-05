@@ -61,6 +61,9 @@ class IntelieTestCase(unittest.TestCase):
 
         self.assertEquals(counter, 4)
 
+    def test_google_search_should_return_a_dict(self):
+        self.assertTrue(type(google_search("Google")) is dict)
+
 
 if __name__ == "__main__":
     unittest.main()

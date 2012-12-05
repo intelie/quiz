@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import unicodedata
+import urllib
+import json
 import re
+
+API_KEY = "AIzaSyDUMMY3a9Tom3E1Y0umyESKXPFvCqi_X38"
 
 
 def validate_result(data):
@@ -58,3 +62,13 @@ def count_words(keyword, title):
             counter += 1
 
     return counter
+
+
+def google_search(keyword):
+    url = "https://www.googleapis.com/customsearch/v1?" \
+        "key=" + API_KEY + "&" \
+        "cx=017576662512468239146:omuauf_lfve&" \
+        "lr=lang_pt&" \
+        "q=" + keyword
+    content = urllib.urlopen(url)
+    return json.loads(content.read())
