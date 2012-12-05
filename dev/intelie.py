@@ -3,6 +3,7 @@
 import unicodedata
 import urllib
 import json
+import sys
 import re
 
 API_KEY = "AIzaSyDUMMY3a9Tom3E1Y0umyESKXPFvCqi_X38"
@@ -17,7 +18,8 @@ def validate_result(data):
 
 
 def strip_accents(string):
-    string = unicode(string, 'utf-8')
+    if type(string) is not unicode:
+        string = unicode(string, 'utf-8')
 
     def normalize(s):
         return unicodedata.normalize('NFD', s)
@@ -68,7 +70,34 @@ def google_search(keyword):
     url = "https://www.googleapis.com/customsearch/v1?" \
         "key=" + API_KEY + "&" \
         "cx=017576662512468239146:omuauf_lfve&" \
-        "lr=lang_pt&" \
         "q=" + keyword
     content = urllib.urlopen(url)
     return json.loads(content.read())
+
+
+if __name__ == '__main__':
+    argv = sys.argv[1:]
+
+    if len(argv) < 1:
+        print "\n\tUsage: python intelie.py keyword\n"
+        sys.exit(-1)
+
+    keyword = " ".join(argv)
+    google_result = google_search(keyword)
+
+    try:
+        validate_result(google_result)
+    except RuntimeError as e:
+        print e
+        sys.exit(-1)
+
+    counter = 0
+    keyword = normalize_string(keyword)
+
+    print 'Titles:'
+    for item in google_result['items']:
+        print "\t- " + item['title']
+
+        counter += count_words(keyword, normalize_string(item['title']))
+
+    print 'Total words counts: %s' % counter
