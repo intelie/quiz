@@ -27,6 +27,15 @@ class IntelieTestCase(unittest.TestCase):
 
         self.assertEquals(normalize_string(string), expected)
 
+    def test_levenshtein_distance(self):
+        self.assertEquals(levenshtein("prato", "prado"), 1)
+        self.assertEquals(levenshtein("editor", "etidor"), 2)
+        self.assertEquals(levenshtein("flor", "flores"), 2)
+        self.assertEquals(levenshtein("mundial", "arvore"), 7)
+        self.assertEquals(levenshtein("casa", "kasa"), 1)
+        self.assertEquals(levenshtein("habitat", "habitantes"), 3)
+        self.assertEquals(levenshtein("php", "python"), 4)
+
 
 if __name__ == "__main__":
     unittest.main()
