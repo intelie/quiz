@@ -12,4 +12,4 @@ Esse repositório contém os desafios para as vagas em cada área da Intelie. Os
 
 * as vagas abertas para **dev** neste momento são somente para estágio, no **Rio de Janeiro**
 
-* as vagas abertas para **operação e serviços e operação** neste momento são de estágio e CLT (junior e pleno), exclusivamente em **São Paulo**
+* as vagas abertas para **operação e serviços** neste momento são de estágio e CLT (junior e pleno), exclusivamente em **São Paulo (capital)**
