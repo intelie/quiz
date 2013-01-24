@@ -57,3 +57,15 @@ def count_word_occurrences(title, search_word):
             counter += 1
 
     return counter
+
+
+if __name__ == '__main__':
+    search_term = unicode(raw_input('Digite o termo que você deseja procurar: '), 'utf-8')
+    json_dict = make_google_api_request(search_term)
+    titles = get_titles(json_dict)
+
+    total_counter = 0
+    for title in titles:
+        total_counter += count_word_occurrences(title, search_term)
+
+    print "\nO termo %s foi encontrado %d vezes em %d resultados" % (search_term, total_counter, len(titles))
