@@ -24,3 +24,22 @@ def get_titles(json_dict):
     """
     results = json_dict['responseData']['results']
     return [re.sub('<(.*?)>', '', r['title']) for r in results]
+
+
+def levenhtein_distance_calc(word1, word2):
+    """
+    Calculate the Levenhtein distance beetween two words. Based on this algorithm:
+    http://en.wikipedia.org/wiki/Levenshtein_distance#Computing_Levenshtein_distance
+    """
+    if not (word1 and word2):
+        return max(len(word1), len(word2))
+
+    cost = 0
+    if word1[-1] != word2[-1]:
+        cost += 1
+
+    return min([
+        levenhtein_distance_calc(word1[0:-1], word2) + 1,
+        levenhtein_distance_calc(word1, word2[0:-1]) + 1,
+        levenhtein_distance_calc(word1[0:-1], word2[0:-1]) + cost,
+    ])

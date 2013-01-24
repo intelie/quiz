@@ -46,5 +46,21 @@ class TestTitlesExtractionMethod(unittest.TestCase):
         self.assertEqual(titles, expected_titles)
 
 
+class TestLevenstheinDistanceCalc(unittest.TestCase):
+
+    def test_should_return_word_1_len_if_not_word_2(self):
+        cost = levenhtein_distance_calc('hey', '')
+        self.assertEqual(3, cost)
+
+    def test_should_return_word_2_len_if_not_word_1(self):
+        cost = levenhtein_distance_calc('', 'hey')
+        self.assertEqual(3, cost)
+
+    def test_calc_cost_correctly(self):
+        cost = levenhtein_distance_calc('kitten', 'sitting')
+        self.assertEqual(3, cost)
+        cost = levenhtein_distance_calc('kitten', 'sittin')
+        self.assertEqual(2, cost)
+
 if __name__ == '__main__':
     unittest.main()
