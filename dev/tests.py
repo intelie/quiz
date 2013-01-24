@@ -62,5 +62,23 @@ class TestLevenstheinDistanceCalc(unittest.TestCase):
         cost = levenhtein_distance_calc('kitten', 'sittin')
         self.assertEqual(2, cost)
 
+
+class TestCountWordsOccurrences(unittest.TestCase):
+
+    def test_exactly_word_is_matched_one_time_returns_1(self):
+        word = u'bernardo'
+        title = u'Python script by bernardo'
+        self.assertEqual(1, count_word_occurrences(title, word))
+
+    def test_word_counting_is_not_case_sensitive(self):
+        word = u'bernardo'
+        title = u'Python script by BERNARDO'
+        self.assertEqual(1, count_word_occurrences(title, word))
+
+    def test_should_accept_levenhtein_distances_bellow_2(self):
+        word = u'bernardo'
+        title = u'Python script by BERNARD or bernar but not berna'
+        self.assertEqual(2, count_word_occurrences(title, word))
+
 if __name__ == '__main__':
     unittest.main()

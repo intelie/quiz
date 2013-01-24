@@ -43,3 +43,17 @@ def levenhtein_distance_calc(word1, word2):
         levenhtein_distance_calc(word1, word2[0:-1]) + 1,
         levenhtein_distance_calc(word1[0:-1], word2[0:-1]) + cost,
     ])
+
+
+def count_word_occurrences(title, search_word):
+    """
+    Given a title and a word, counts its occurrences in the title
+    """
+    counter = 0
+
+    title_words = [word.lower() for word in title.split(' ') if word.isalpha()]
+    for word in title_words:
+        if levenhtein_distance_calc(word, search_word) <= 2:
+            counter += 1
+
+    return counter
