@@ -1,4 +1,5 @@
 #coding:utf-8
+import re
 import json
 import requests
 from urllib import urlencode
@@ -15,3 +16,11 @@ def make_google_api_request(search_term):
     response = requests.get(url)
 
     return json.loads(response.content)
+
+
+def get_titles(json_dict):
+    """
+    Filter and sanitize the result's titles removing the HTML markup tags
+    """
+    results = json_dict['responseData']['results']
+    return [re.sub('<(.*?)>', '', r['title']) for r in results]

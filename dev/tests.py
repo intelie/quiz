@@ -30,5 +30,21 @@ class TestGoogleRequest(unittest.TestCase):
         requests.get.assert_called_with(request_url)
 
 
+class TestTitlesExtractionMethod(unittest.TestCase):
+
+    @patch('requests.get', Mock(return_value=MockedResponse(content=GOOGLE_RESPONSE, status_code=200)))
+    def test_returns_correct_and_clean_titles(self):
+        expected_titles = [
+            u"Bernardo Vieira de Souza – Wikipédia, a enciclopédia livre",
+            u"Bernardo Shoes and Sandals - Women&#39;s Leather",
+            u"Bernardo Winery | Founded 1889. The oldest continuously operating ...",
+            u"BERNARDO FASHIONS",
+        ]
+        json_dict = make_google_api_request('bernardo')
+        titles = get_titles(json_dict)
+        self.assertEqual(titles, expected_titles)
+
+
+
 if __name__ == '__main__':
     unittest.main()
