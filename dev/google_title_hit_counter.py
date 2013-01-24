@@ -6,6 +6,22 @@ from urllib import urlencode
 
 GOOGLE_SEARCH_API_URL = 'https://ajax.googleapis.com/ajax/services/search/web'
 
+
+class Memoize:
+    """
+    Memoization class to prevents repeated calculation of previous results
+    """
+
+    def __init__(self, decorated):
+        self.decorated = decorated
+        self.memo = {}
+
+    def __call__(self, *args):
+        if not self.memo.get(args):
+            self.memo[args] = self.decorated(*args)
+        return self.memo[args]
+
+
 def make_google_api_request(search_term):
     """
     Make google request and return a python dict as the json response
@@ -25,7 +41,7 @@ def get_titles(json_dict):
     results = json_dict['responseData']['results']
     return [re.sub('<(.*?)>', '', r['title']) for r in results]
 
-
+@Memoize
 def levenhtein_distance_calc(word1, word2):
     """
     Calculate the Levenhtein distance beetween two words. Based on this algorithm:
@@ -63,7 +79,6 @@ if __name__ == '__main__':
     search_term = unicode(raw_input('Digite o termo que você deseja procurar: '), 'utf-8')
     json_dict = make_google_api_request(search_term)
     titles = get_titles(json_dict)
-
     total_counter = 0
     for title in titles:
         total_counter += count_word_occurrences(title, search_term)
