@@ -11,6 +11,7 @@ class MockedResponse():
     def __init__(self, *args, **kwargs):
         self.__dict__.update(kwargs)
 
+
 class TestGoogleRequest(unittest.TestCase):
 
     @patch('requests.get', Mock(return_value=MockedResponse(content=GOOGLE_RESPONSE, status_code=200)))
@@ -43,7 +44,6 @@ class TestTitlesExtractionMethod(unittest.TestCase):
         json_dict = make_google_api_request('bernardo')
         titles = get_titles(json_dict)
         self.assertEqual(titles, expected_titles)
-
 
 
 if __name__ == '__main__':
