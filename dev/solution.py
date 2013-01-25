@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import sys
 
 
 def levenshtein(s, t):
@@ -33,6 +34,18 @@ def levenshtein(s, t):
     return d[m - 1][n - 1]
 
 
+def count_word(word, words):
+    return len([x for x in words if x == word])
+
+
+def count_word_with_distance(word, words):
+    count = 0
+    for x in words:
+        if x != word and levenshtein(x, word) < 2:
+            count += 1
+    return count
+
+
 def titles(query, limit):
     search_url = 'http://www.google.com/search'
     search_params = {'btnG': 'Google Search'}
@@ -51,24 +64,25 @@ def titles(query, limit):
             yield " ".join(h3.contents[0].stripped_strings)
 
 
-def count_word(word, words):
-    return len([x for x in words if x == word])
-
-
-def count_word_with_distance(word, words):
+def main(word, limit=10):
+    word = word.lower()
     count = 0
-    for x in words:
-        if x != word and levenshtein(x, word) < 2:
-            count += 1
-    return count
+    all_titles = []
+    for title in titles(word, limit):
+        all_titles.append(title)
+        title = title.lower()
+        words = title.split()
+        count += count_word(word, words) + count_word_with_distance(word, words)
 
-word = 'test'
-word = word.lower()
-count = 0
-for title in titles(word, 30):
-    print title
-    title = title.lower()
-    words = title.split()
-    count += count_word(word, words) + count_word_with_distance(word, words)
+    for title in all_titles:
+        print title
+    print count
 
-print count
+if __name__ == '__main__':
+    if len(sys.argv) == 2:
+        main(sys.argv[1])
+    elif len(sys.argv) > 2:
+        main(sys.argv[1], int(sys.argv[2]))
+    else:
+        print 'missing operand'
+        print 'Please give a name to search for.'
