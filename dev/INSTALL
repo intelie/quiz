@@ -1,0 +1,15 @@
+Para instalar as dependências necessárias, executar os comandos abaixo no terminal:
+$ sudo apt-get install python-pip python-dev build-essential 
+$ sudo pip install --upgrade pip 
+$ sudo pip install --upgrade virtualenv 
+
+Depois, navegar até o diretório 'dev' deste projeto e executar:
+$ virtualenv ENV
+$ ENV/bin/pip install -r requirements.txt
+
+Para executar a solução, utilizar a seguinte sintaxe:
+$ ENV/bin/python solution.py test
+Onde 'test' é o termo a ser buscado.
+
+Opcionalmente, pode-se passar mais um parâmetro que é o número de títulos a serem analisados. Exemplo:
+$ ENV/bin/python solution.py test 30
