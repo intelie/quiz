@@ -41,7 +41,7 @@ def count_word(word, words):
 def count_word_with_distance(word, words):
     count = 0
     for x in words:
-        if x != word and levenshtein(x, word) < 2:
+        if x != word and levenshtein(x, word) <= 2:
             count += 1
     return count
 
