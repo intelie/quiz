@@ -67,14 +67,15 @@ def titles(query, limit):
 def main(word, limit=10):
     word = word.lower()
     count = 0
-    all_titles = []
+    titles_with_word = []
     for title in titles(word, limit):
-        all_titles.append(title)
-        title = title.lower()
-        words = title.split()
+        title_lower = title.lower()
+        words = title_lower.split()
         count += count_word(word, words) + count_word_with_distance(word, words)
+        if count > 0:
+            titles_with_word.append(title)
 
-    for title in all_titles:
+    for title in titles_with_word:
         print title
     print count
 
