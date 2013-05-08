@@ -5,11 +5,11 @@ def levenshtein(a, b)
 	return a.length if (b.length == 0)
 	return b.length if (a.length == 0)
 
-	m = Array.new(a.length+1) { Array.new (b.length+1) }
+	m = Array.new(a.length+1) { Array.new (b.length+1) } 					#inicializando a matriz com os pesos das operações
 	(0..a.length).each { |i| m[i][0] = i }
 	(0..b.length).each { |j| m[0][j] = j }
 
-	for i in (1..a.length) do
+	for i in (1..a.length) do												#salvando na matriz os pesos calculados
 		for j in (1..b.length) do
 			m[i][j] = [ m[i  ][j-1] + 1, 
 						m[i-1][j  ] + 1, 
@@ -17,16 +17,16 @@ def levenshtein(a, b)
 		end
 	end
 
-	return m[a.length][b.length]
+	return m[a.length][b.length]											#retornando o peso mínimo
 end
 
 
 def getTitlesFromGoogleQuery(query)
 	html  = Net::HTTP.get('www.google.com', "/search?q=#{URI::encode(query)}")
 	parts = html.split("<h3 class=\"r\">")
-	htmlTitles = parts[1, parts.length]								   # O primeiro pedaço html é besteira, ficamos apenas com o restante
-	htmlTitles = htmlTitles.collect{ |x| x[0, x.index("</a>")] }	   # Queremos apenas o texto na primeira tag <a>
-	textTitles = htmlTitles.collect{ |x| x.gsub(%r{</?[^>]+?>}, '') }  # Excluimos as tags html dessa parte ...
+	htmlTitles = parts[1, parts.length]								   		# O primeiro pedaço html é besteira, ficamos apenas com o restante
+	htmlTitles = htmlTitles.collect{ |x| x[0, x.index("</a>")] }	   		# Queremos apenas o texto na primeira tag <a>
+	textTitles = htmlTitles.collect{ |x| x.gsub(%r{</?[^>]+?>}, '') }  		# Excluimos as tags html dessa parte ...
 end
 
 
