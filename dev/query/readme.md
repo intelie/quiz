@@ -10,7 +10,3 @@ ex:
 Programa testado com a seguinte configuração:
 versão ruby:
 	2.0.0.p0 
-versão gems:
-	levenshtein-ffi (1.0.3)
-	nokogiri (1.5.9)
-
