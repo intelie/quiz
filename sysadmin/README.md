@@ -41,3 +41,7 @@ Escolha um dos desafios abaixo e envie a solução para o e-mail `trabalhe@intel
 * proponha duas possíveis soluções para que os servidores A e B recebam o tráfego HTTP (e, claro, a resposta chegue de volta ao cliente)
 * discuta as vantagens e desvantagens de cada solução levando em consideração aspectos práticos como estabilidade da solução e facilidade de configuração/manutenção.
 
+## Desafio 4:
+* Leia rapidamente a documentação da [linguagem de processamento de eventos EPL](http://esper.codehaus.org/esper-4.9.0/doc/reference/en-US/html_single/index.html)
+* Responda: para que servem as propriedades dinâmicas de um evento da linguagem EPL?
+* Cite um exemplo de caso de uso.
