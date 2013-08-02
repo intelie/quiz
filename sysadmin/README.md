@@ -3,7 +3,7 @@
 Escolha um dos desafios abaixo e envie a solução para o e-mail `trabalhe@intelie.com.br` especificando no assunto a vaga e o desafio escolhido.
 
 ## Desafio 1:
-* crie na sua máquina uma VM do VirtualBox com sistema operacional CentOS 5.6
+* crie na sua máquina uma VM do VirtualBox com sistema operacional CentOS
 * use o [módulo do puppet que gerencia o MySQL](https://github.com/puppetlabs/puppetlabs-mysql) para:
   * instalar e rodar o MySQL server na sua VM
   * configurar um usuário de backup (com senha)
@@ -11,7 +11,7 @@ Escolha um dos desafios abaixo e envie a solução para o e-mail `trabalhe@intel
 * envie por e-mail as evidências de que tudo foi realizado com sucesso
 
 ## Desafio 2:
-* crie na sua máquina uma VM do VirtualBox com sistema operacional CentOS 5.6
+* crie na sua máquina uma VM do VirtualBox com sistema operacional CentOS 
 * use o [módulo do puppet que gerencia o ActiveMQ](https://github.com/intelie/puppetlabs-activemq) para:
   * instalar e rodar o ActiveMQ na sua VM
   * configurar o ActiveMQ para ativar a interface de administração web
