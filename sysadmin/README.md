@@ -1,6 +1,7 @@
 # Desafios de operação e serviços
 
 Escolha um dos desafios abaixo e envie a solução para o e-mail `trabalhe@intelie.com.br` especificando no assunto a vaga e o desafio escolhido.
+Os desafios abaixo não exigem nenhum conhecimento prévio, ao contrário o objetivo é avaliar o caminho seguido pelo candidato durante a tentativa de solução de um problema novo. Portanto, a avaliação não levará muito em conta o resultado final propriamente dito, mas sim o caminho seguido até lá. Isso significa também que soluções parciais são bem-vindas.
 
 ## Desafio 1:
 * crie na sua máquina uma VM do VirtualBox com sistema operacional CentOS
@@ -43,5 +44,5 @@ Escolha um dos desafios abaixo e envie a solução para o e-mail `trabalhe@intel
 
 ## Desafio 4:
 * Leia rapidamente a documentação da [linguagem de processamento de eventos EPL](http://esper.codehaus.org/esper-4.9.0/doc/reference/en-US/html_single/index.html)
-* Responda: para que servem as propriedades dinâmicas de um evento da linguagem EPL?
+* Responda: para que servem as propriedades dinâmicas de um evento?
 * Cite um exemplo de caso de uso.
