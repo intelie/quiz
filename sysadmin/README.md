@@ -10,6 +10,7 @@ Os desafios abaixo não exigem nenhum conhecimento prévio, ao contrário o obje
   * configurar um usuário de backup (com senha)
   * ativar uma rotina de backup diário às 01:00AM de todas as bases do MySQL
 * envie por e-mail as evidências de que tudo foi realizado com sucesso
+* dica: se você nunca usou o puppet antes, dê uma olhada nos [tutoriais oficiais](http://docs.puppetlabs.com/learning/)
 
 ## Desafio 2:
 * crie na sua máquina uma VM do VirtualBox com sistema operacional CentOS 
@@ -20,6 +21,7 @@ Os desafios abaixo não exigem nenhum conhecimento prévio, ao contrário o obje
 * faça um shell script na sua máquina que envie, usando o [stomp_sender](https://github.com/intelie/stomp_sender), uma mensagem via STOMP para o ActiveMQ rodando na VM 
 * visualize a mensagem na interface de administração web
 * envie por email as evidências de que tudo foi realizado com sucesso
+* dica: se você nunca usou o puppet antes, dê uma olhada nos [tutoriais oficiais](http://docs.puppetlabs.com/learning/)
 
 ## Desafio 3:
 * você tem 3 servidores no Rackspace:
