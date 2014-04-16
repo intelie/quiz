@@ -1,0 +1,18 @@
+*Gerar executável 
+
+A implementação foi feita usando a linguagem Java e a ferramenta Maven. Para gerar e rodar o executável é necessário 
+ter o Java 6 ou superior instalado e setar a variável de ambiente JAVA_HOME. Também é necessário ter o Maven 3 instalado.
+
+Para gerar o jar basta executar o comando "mvn clean package" no diretório raiz do projeto. Será criado o arquivo 
+"google_search_util-1.0-jar-with-dependencies.jar" dentro do diretório "target".
+
+*Modo de usar 
+
+Para executar basta digitar: java -jar google_search_util-1.0-jar-with-dependencies.jar <termo_a_ser_buscado> [<implementacao>]
+
+O primeiro parâmetro (obrigatório) indica o termo a ser buscado. O segundo parâmetro (opcional) indica a implementação a ser usada.
+Foram feita duas implementações, uma usando a Web Search API e outra a interface web de pesquisa do google. 
+Quando o segundo parâmetro não é informado, a Web Search API é usada como padrão. Para usar a interface web basta digitar "webSearch".
+
+OBS: Se a interface web for usada muitas vezes em um curto intervalo de tempo, o google bloqueará temporariamente requições feitas pela aplicação.
+Os resultados retornados pelas dois modos de busca não são iguais. Isso se deve à maneira como elas são implementadas pelo Google.
