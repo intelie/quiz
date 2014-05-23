@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Rsrc-Class-Path: ./ google-api-client-1.12.0-beta.jar google-api-servi
+ ces-customsearch-v1-rev9-1.12.0-beta.jar jdo2-api-2.3-eb.jar httpclie
+ nt-4.0.3.jar google-api-client-java6-1.12.0-beta.jar google-http-clie
+ nt-appengine-1.12.0-beta.jar google-api-client-appengine-1.12.0-beta.
+ jar transaction-api-1.1.jar google-oauth-client-1.12.0-beta.jar httpc
+ ore-4.0.1.jar google-oauth-client-servlet-1.12.0-beta.jar google-http
+ -client-1.12.0-beta.jar xpp3-1.1.4c.jar google-oauth-client-java6-1.1
+ 2.0-beta.jar jsr305-1.3.9.jar commons-logging-1.1.1.jar guava-jdk5-13
+ .0.jar google-oauth-client-appengine-1.12.0-beta.jar
+Class-Path: .
+Rsrc-Main-Class: desafiointelie.Search
+Main-Class: org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader
+

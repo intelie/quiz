@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project DesafioIntelie">
+    <!--this file was created by Gabriel Salvatti-->
+    <!--ANT 1.7 is required                                        -->
+    <target name="create_run_jar">
+        <jar destfile="./desafiointelie.jar">
+            <manifest>
+		<attribute name="Main-Class" value="desafiointelie.Search"/>
+                <attribute name="Class-Path" value="./ commons-logging-1.1.1.jar google-api-client-1.12.0-beta.jar google-api-client-appengine-1.12.0-beta.jar google-api-client-java6-1.12.0-beta.jar google-api-services-customsearch-v1-rev9-1.12.0-beta.jar google-http-client-1.12.0-beta.jar google-http-client-appengine-1.12.0-beta.jar google-oauth-client-1.12.0-beta.jar google-oauth-client-appengine-1.12.0-beta.jar google-oauth-client-java6-1.12.0-beta.jar google-oauth-client-servlet-1.12.0-beta.jar guava-jdk5-13.0.jar httpclient-4.0.3.jar httpcore-4.0.1.jar jdo2-api-2.3-eb.jar jsr305-1.3.9.jar transaction-api-1.1.jar xpp3-1.1.4c.jar"/>
+            </manifest>
+            <fileset dir="./"/>
+            <zipfileset dir="./" includes="commons-logging-1.1.1.jar"/>
+            <zipfileset dir="./" includes="google-api-client-1.12.0-beta.jar"/>
+            <zipfileset dir="./" includes="google-api-client-appengine-1.12.0-beta.jar"/>
+            <zipfileset dir="./" includes="google-api-client-java6-1.12.0-beta.jar"/>
+            <zipfileset dir="./" includes="google-api-services-customsearch-v1-rev9-1.12.0-beta.jar"/>
+            <zipfileset dir="./" includes="google-http-client-1.12.0-beta.jar"/>
+            <zipfileset dir="./" includes="google-http-client-appengine-1.12.0-beta.jar"/>
+            <zipfileset dir="./" includes="google-oauth-client-1.12.0-beta.jar"/>
+            <zipfileset dir="./" includes="google-oauth-client-appengine-1.12.0-beta.jar"/>
+            <zipfileset dir="./" includes="google-oauth-client-java6-1.12.0-beta.jar"/>
+            <zipfileset dir="./" includes="google-oauth-client-servlet-1.12.0-beta.jar"/>
+            <zipfileset dir="./" includes="guava-jdk5-13.0.jar"/>
+            <zipfileset dir="./" includes="httpclient-4.0.3.jar"/>
+            <zipfileset dir="./" includes="httpcore-4.0.1.jar"/>
+            <zipfileset dir="./" includes="jdo2-api-2.3-eb.jar"/>
+            <zipfileset dir="./" includes="jsr305-1.3.9.jar"/>
+            <zipfileset dir="./" includes="transaction-api-1.1.jar"/>
+            <zipfileset dir="./" includes="xpp3-1.1.4c.jar"/>
+        </jar>
+    </target>
+</project>
